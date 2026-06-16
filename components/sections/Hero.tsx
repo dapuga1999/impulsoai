@@ -25,7 +25,7 @@ const EXPLODE_ITEMS = [
 
 function ExplodeCard({ item }: { item: typeof EXPLODE_ITEMS[0] }) {
   return (
-    <div data-explode={item.id} className="explode-item hidden md:block" style={{ zIndex: 20 }}>
+    <div data-explode={item.id} className="explode-item" style={{ zIndex: 20 }}>
       <div className="glass rounded-2xl px-3 py-2.5 shadow-card flex items-start gap-2.5 min-w-[160px] max-w-[220px]" style={{ border: '1px solid rgba(79,124,255,0.15)' }}>
         {item.icon && <span className="text-lg leading-none mt-0.5 flex-shrink-0">{item.icon}</span>}
         <div>
@@ -89,11 +89,14 @@ export default function Hero() {
     if (typeof window === 'undefined') return
 
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768
+      const posScale = isMobile ? 0.38 : 1
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=450%',
+          end: isMobile ? '+=300%' : '+=450%',
           scrub: 1.5,
           pin: true,
           anticipatePin: 1,
@@ -113,7 +116,7 @@ export default function Hero() {
         tl.fromTo(
           `[data-explode="${item.id}"]`,
           { opacity: 0, scale: 0, x: 0, y: 0, rotation: 0 },
-          { opacity: 1, scale: 1, x: item.tx, y: item.ty, rotation: item.rot, duration: 0.18, ease: 'back.out(1.4)' },
+          { opacity: 1, scale: isMobile ? 0.75 : 1, x: item.tx * posScale, y: item.ty * posScale, rotation: item.rot, duration: 0.18, ease: 'back.out(1.4)' },
           start
         )
       })
