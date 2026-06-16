@@ -10,6 +10,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
   title: 'ImpulsoAI — Inteligencia Artificial para Clínicas Dentales',
   description:
     'Automatiza la atención al paciente, gestión de citas y seguimientos de tu clínica dental con IA. Disponible 24/7.',
