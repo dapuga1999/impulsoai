@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Variables globales ─────────────────────────── */
+:root {
+  --blue: #4F7CFF;
+  --blue-glow: #80A8FF;
+  --bg: #F8F8FA;
+  --ink: #0F172A;
+  --gray: #64748B;
+}
+
+/* ─── Reset básico ───────────────────────────────── */
+html {
+  scroll-behavior: auto; /* Lenis lo gestiona */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  background-color: #F8F8FA;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Tipografía ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* ─── Scroll progress bar ────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4F7CFF, #80A8FF);
+  z-index: 9999;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ─── Glassmorphism utility ──────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Orbit ring del teléfono ────────────────────── */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ─── Phone mockup ───────────────────────────────── */
+.phone-body {
+  width: 220px;
+  height: 460px;
+  background: linear-gradient(160deg, #0d1220 0%, #070b16 100%);
+  border-radius: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 40px 100px rgba(0,0,0,0.5),
+    0 0 60px rgba(79,124,255,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Gradient orbs de fondo ─────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Mouse follow glow ──────────────────────────── */
+#mouse-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79,124,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+/* ─── Shimmer button ─────────────────────────────── */
+.btn-shimmer {
+  background: linear-gradient(
+    90deg,
+    #4F7CFF 0%,
+    #80A8FF 25%,
+    #4F7CFF 50%,
+    #80A8FF 75%,
+    #4F7CFF 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Explode items (posición inicial) ───────────── */
+.explode-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ─── Barra de progreso de la timeline ──────────── */
+.timeline-line-fill {
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+/* ─── Selection ──────────────────────────────────── */
+::selection {
+  background: rgba(79, 124, 255, 0.2);
+  color: #0F172A;
+}
