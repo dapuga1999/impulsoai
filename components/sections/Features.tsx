@@ -128,29 +128,33 @@ export default function Features() {
               </div>
 
               {/* Illustration side */}
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center w-full">
                 <div
-                  className="w-full max-w-sm aspect-square rounded-3xl glass border border-white/60 shadow-card flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-300"
+                  className="w-full max-w-xs md:max-w-sm rounded-3xl glass border border-white/60 shadow-card flex flex-col items-center justify-center relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-300 py-12 md:py-0 md:aspect-square"
                 >
                   {/* Background glow */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: `radial-gradient(circle at 50% 50%, ${f.color}10 0%, transparent 70%)`,
-                    }}
+                    style={{ background: `radial-gradient(circle at 50% 50%, ${f.color}10 0%, transparent 70%)` }}
                   />
 
                   {/* Icon */}
                   <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4"
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center"
                     style={{ background: `${f.color}15`, color: f.color }}
                   >
                     {f.icon}
                   </div>
 
-                  {/* Floating mini cards */}
+                  {/* Stat */}
+                  <div className="mt-4 text-center">
+                    <p className="font-black text-2xl" style={{ color: f.color }}>{f.stat}</p>
+                    <p className="text-muted text-xs mt-0.5">{f.statLabel}</p>
+                  </div>
+
+                  {/* Floating mini cards — solo desktop */}
                   <div
-                    className="absolute top-6 right-6 glass rounded-xl px-3 py-2 shadow-card animate-float"
+                    className="hidden md:block absolute top-6 right-6 glass rounded-xl px-3 py-2 shadow-card animate-float"
                     style={{ animationDelay: `${i * 0.4}s`, animationDuration: '3s' }}
                   >
                     <p className="text-[10px] font-bold text-ink">{f.stat}</p>
@@ -158,7 +162,7 @@ export default function Features() {
                   </div>
 
                   <div
-                    className="absolute bottom-6 left-6 glass rounded-xl px-3 py-2 shadow-card animate-float"
+                    className="hidden md:block absolute bottom-6 left-6 glass rounded-xl px-3 py-2 shadow-card animate-float"
                     style={{ animationDelay: `${i * 0.4 + 1}s`, animationDuration: '3.5s' }}
                   >
                     <div className="flex items-center gap-1.5">
