@@ -25,7 +25,7 @@ const EXPLODE_ITEMS = [
 
 function ExplodeCard({ item }: { item: typeof EXPLODE_ITEMS[0] }) {
   return (
-    <div data-explode={item.id} className="explode-item" style={{ zIndex: 20 }}>
+    <div data-explode={item.id} className="explode-item hidden md:block" style={{ zIndex: 20 }}>
       <div className="glass rounded-2xl px-3 py-2.5 shadow-card flex items-start gap-2.5 min-w-[160px] max-w-[220px]" style={{ border: '1px solid rgba(79,124,255,0.15)' }}>
         {item.icon && <span className="text-lg leading-none mt-0.5 flex-shrink-0">{item.icon}</span>}
         <div>
@@ -131,8 +131,8 @@ export default function Hero() {
       {/* Background radial */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 60% -5%, rgba(79,124,255,0.12) 0%, transparent 70%)' }} />
 
-      {/* ── TEXTO (izquierda, siempre visible hasta el scroll) ── */}
-      <div className="hero-text absolute inset-0 flex items-center z-20 pointer-events-none">
+      {/* ── TEXTO (izquierda en desktop, arriba en móvil) ── */}
+      <div className="hero-text absolute inset-0 flex items-start md:items-center pt-24 md:pt-0 z-20 pointer-events-none">
         <div className="max-w-6xl mx-auto w-full px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -147,7 +147,7 @@ export default function Hero() {
             </div>
 
             {/* H1 */}
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black text-ink mb-5 leading-[1.05] tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-ink mb-4 md:mb-5 leading-[1.05] tracking-tight">
               Tu clínica descansa.
               <br />
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(135deg, #4F7CFF 0%, #80A8FF 100%)' }}>
@@ -184,7 +184,7 @@ export default function Hero() {
       </div>
 
       {/* ── TELÉFONO CENTRADO (siempre visible) + EXPLOSIÓN ── */}
-      <div className="phone-scene absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="phone-scene absolute inset-0 flex items-end md:items-center justify-center pb-6 md:pb-0 pointer-events-none">
 
         {/* Glow */}
         <div className="phone-glow absolute opacity-0" style={{ width: 340, height: 340, borderRadius: '50%', background: 'radial-gradient(circle, rgba(79,124,255,0.35) 0%, transparent 70%)', filter: 'blur(20px)' }} />
@@ -217,7 +217,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 animate-float"
+          className="relative z-10 animate-float scale-[0.65] md:scale-100"
           style={{ animationDuration: '4s' }}
         >
           {EXPLODE_ITEMS.map((item) => (
